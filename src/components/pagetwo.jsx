@@ -26,13 +26,13 @@ const PageTwoComp = () => {
 
   return (
     <>
-    <div className='h-screen w-full container flex items-center justify-center relative'>
-        <i class="fa-solid fa-angle-left text-xl absolute top-4 left-44 bg-gray-200 w-8 h-8 text-center justify-center items-center flex cursor-pointer"></i>
-      <form className='w-[650px] border-black mx-auto my-auto flex flex-col items-center'>
-        <h1 className='font-extrabold text-2xl text-center'>What  brings you to Dribble?</h1>
+    <div className='h-screen w-full container flex items-center justify-center relative m-auto'>
+        <i class="fa-solid fa-angle-left text-xl absolute top-4 left-44 bg-gray-200 w-8 h-8 text-center justify-center items-center flex cursor-pointer md:left-10 sm:left-10 sd:left-10 xs:left-0"></i>
+      <form className='w-[650px] border-black mx-auto my-auto flex flex-col items-center sm:h-full xs:p-4'>
+        <h1 className='font-extrabold text-2xl text-center sm:mt-24 sd:mt-24'>What  brings you to Dribble?</h1>
         <label className='text-gray-500 text-xs text-center'>Select the options that best describe you. Don't worry, you can explore other options later.</label>
 
-        <div className='flex gap-6 mt-16'>
+        <div className='flex gap-6 mt-16 sm:flex-col md:flex-row sd:flex-col xs:flex-col sm:h-fit'>
             <div className={`flex flex-col border w-60 h-60 ${isBoxOneChecked ? 'border-2 border-pink-500' : ''} shadow-md rounded-xl text-center items-center justify-center gap-2 p-4`}>
                 <img src="Images/image2.png" className='h-[100px]' alt="" />
                 <h3 className='font-bold'>I'm a designer looking to share my work</h3>
