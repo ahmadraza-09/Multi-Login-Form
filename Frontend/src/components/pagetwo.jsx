@@ -1,7 +1,10 @@
 import React from 'react'
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 const PageTwoComp = () => {
+
+  const navigate = useNavigate();
 
   const [isChecked, setIsChecked] = useState(false);
   const [isBoxOneChecked, setIsBoxOneChecked] = useState(false);
@@ -27,7 +30,7 @@ const PageTwoComp = () => {
   return (
     <>
     <div className='h-screen w-full container flex items-center justify-center relative m-auto'>
-        <i class="fa-solid fa-angle-left text-xl absolute top-4 left-44 bg-gray-200 w-8 h-8 text-center justify-center items-center flex cursor-pointer md:left-10 sm:left-10 sd:left-10 xs:left-0"></i>
+        <i class="fa-solid fa-angle-left text-xl absolute top-4 left-44 bg-gray-200 w-8 h-8 text-center justify-center items-center flex cursor-pointer md:left-10 sm:left-10 sd:left-10 xs:left-0" onClick={() => {navigate('/pageone')}}></i>
       <form className='w-[650px] border-black mx-auto my-auto flex flex-col items-center sm:h-full xs:p-4'>
         <h1 className='font-extrabold text-2xl text-center sm:mt-24 sd:mt-24'>What  brings you to Dribble?</h1>
         <label className='text-gray-500 text-xs text-center'>Select the options that best describe you. Don't worry, you can explore other options later.</label>
@@ -55,7 +58,7 @@ const PageTwoComp = () => {
 
         <div className='flex flex-col items-center justify-center mt-10 gap-4'>
           <h3 className={`font-bold text-sm ${isBoxThreeChecked || isBoxTwoChecked || isBoxOneChecked ? '' : 'invisible'}`}>Anything else? You can select</h3>
-          <button className={`flex items-center bg-pink-500 h-8 text-center justify-center rounded-md w-48 text-white font-bold ${isBoxThreeChecked || isBoxTwoChecked || isBoxOneChecked ? '' : 'disabled:bg-pink-300'}`} disabled={!isBoxOneChecked && !isBoxTwoChecked && !isBoxThreeChecked}>Finish</button>
+          <button className={`flex items-center bg-pink-500 h-8 text-center justify-center rounded-md w-48 text-white font-bold ${isBoxThreeChecked || isBoxTwoChecked || isBoxOneChecked ? '' : 'disabled:bg-pink-300'}`} disabled={!isBoxOneChecked && !isBoxTwoChecked && !isBoxThreeChecked} onClick={() => {navigate('/pagethree')}}>Finish</button>
           <h3 className={`font-bold text-sm text-gray-500 ${isBoxThreeChecked || isBoxTwoChecked || isBoxOneChecked ? '' : 'invisible'}`}>or Press RETURN</h3>
         </div>
       </form>

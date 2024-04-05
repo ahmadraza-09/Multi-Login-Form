@@ -1,7 +1,9 @@
 import React from 'react'
+import { useNavigate } from "react-router-dom";
 
 const Registration = () => {
-
+    
+    const navigate = useNavigate();
   return (
     <>
     <div className="mx-auto h-screen w-full flex sd:flex-col">
@@ -43,7 +45,7 @@ const Registration = () => {
                     <label className='font-medium text-gray-500'>Creating an account means you're okay with our <span  className='text-blue-600 cursor-pointer'>Terms of Service</span>, <span className='text-blue-600 cursor-pointer'>Privacy Policy</span>, and our default <span className='text-blue-600 cursor-pointer'>Notification Settings.</span></label>
                 </div>
 
-                <button className='flex items-center bg-pink-500 h-8 text-center justify-center rounded-md w-40 text-white font-bold'>Create Account</button>
+                <button className='flex items-center bg-pink-500 h-8 text-center justify-center rounded-md w-40 text-white font-bold' onClick={() => {navigate('/pageone')}}>Create Account</button>
                 <label className='font-medium text-gray-400'>This site is protected by reCAPTCHA and the Google <span  className='text-blue-600 cursor-pointer'>Privacy Policy</span> and <span  className='text-blue-600 cursor-pointer'>Terms of Service</span> apply.</label>
 
             </form>

@@ -1,6 +1,10 @@
 import React from 'react'
+import { useNavigate } from "react-router-dom";
 
 const PageOneComp = () => {
+
+  const navigate = useNavigate();
+
   return (
     <>
     <div className='h-screen w-full my-auto container flex items-center justify-center xl:items-center sd:w-full xs:w-full xs:p-4 xs:m-auto sd:m-auto'>
@@ -20,7 +24,7 @@ const PageOneComp = () => {
             </div>
             <h2 className='font-bold'>Add your location</h2>
             <input type="text" className='border-b-2 pb-2 outline-none placeholder:font-medium placeholder:text-xs' placeholder='Enter a location'/>
-            <button className='flex items-center bg-pink-500 h-8 text-center justify-center rounded-md w-48 text-white font-bold mt-6'>Next</button>
+            <button className='flex items-center bg-pink-500 h-8 text-center justify-center rounded-md w-48 text-white font-bold mt-6' onClick={() => {navigate('/pagetwo')}}>Next</button>
         </div>
       </form>
     </div>
