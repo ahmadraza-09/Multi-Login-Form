@@ -74,7 +74,7 @@ const PageTwoComp = () => {
 
     console.log('Updated UserData:', updatedUserData);
 
-    axios.post('http://localhost:7000/auth/registration', updatedUserData)
+    axios.post('https://multi-login-form.vercel.app/auth/registration', updatedUserData)
       .then((response) => {
         console.log(response.data.message);
         if(response.data.message == "Username already exists"){

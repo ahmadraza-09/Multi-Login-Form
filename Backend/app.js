@@ -23,7 +23,9 @@ db.connect((error) => {
     }
 });
 
-app.listen('7000', (error) => {
+const PORT = process.env.PORT || 7000;
+
+app.listen(PORT, (error) => {
     if (!error) {
         console.log('MySQL - Server has started at 7000 Successfully');
     }else {
