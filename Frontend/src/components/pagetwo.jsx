@@ -13,38 +13,35 @@ const PageTwoComp = () => {
   const [isBoxThreeChecked, setIsBoxThreeChecked] = useState(false);
 
   const handleOneChange = () => {
-    setIsBoxOneChecked(!isBoxOneChecked); // Yeh karega checkbox ko toggle (on ya off) karne ke liye
+    setIsBoxOneChecked(!isBoxOneChecked);
     if (!isBoxOneChecked) {
-      setIsBoxTwoChecked(false); // Agar yeh checkbox on hai, to dusre checkboxes ko off kar dega
+      setIsBoxTwoChecked(false); 
       setIsBoxThreeChecked(false);
-      setCheckedBox(1); // CheckedBox ko update karega
+      setCheckedBox(1);
     } else {
-      setCheckedBox(''); // CheckedBox ko update karega
-
+      setCheckedBox(''); 
     }
   };
 
   const handleTwoChange = () => {
-    setIsBoxTwoChecked(!isBoxTwoChecked); // Yeh karega checkbox ko toggle (on ya off) karne ke liye
+    setIsBoxTwoChecked(!isBoxTwoChecked); 
     if (!isBoxTwoChecked) {
-      setIsBoxOneChecked(false); // Agar yeh checkbox on hai, to dusre checkboxes ko off kar dega
+      setIsBoxOneChecked(false); 
       setIsBoxThreeChecked(false);
-      setCheckedBox(2); // CheckedBox ko update karega
+      setCheckedBox(2); 
     } else {
-      setCheckedBox(''); // CheckedBox ko update karega
-
+      setCheckedBox(''); 
     }
   };
 
   const handleThreeChange = () => {
-    setIsBoxThreeChecked(!isBoxThreeChecked); // Yeh karega checkbox ko toggle (on ya off) karne ke liye
+    setIsBoxThreeChecked(!isBoxThreeChecked);
     if (!isBoxThreeChecked) {
-      setIsBoxOneChecked(false); // Agar yeh checkbox on hai, to dusre checkboxes ko off kar dega
+      setIsBoxOneChecked(false); 
       setIsBoxTwoChecked(false);
-      setCheckedBox(3); // CheckedBox ko update karega
+      setCheckedBox(3); 
     } else {
-      setCheckedBox(''); // CheckedBox ko update karega
-
+      setCheckedBox(''); 
     }
   };
 
@@ -80,7 +77,16 @@ const PageTwoComp = () => {
     axios.post('http://localhost:7000/auth/registration', updatedUserData)
       .then((response) => {
         console.log(response.data.message);
-        navigate('/pagethree');
+        if(response.data.message == "Username already exists"){
+          alert(response.data.message);
+          return false;
+        } else if(response.data.message == "Email already exists"){
+          alert(response.data.message);
+          return false; 
+        } else {
+          navigate('/pagethree');
+          console.log(response.data.message);
+        }
       })
       .catch((error) => {
         console.error("Error registering user:", error);
