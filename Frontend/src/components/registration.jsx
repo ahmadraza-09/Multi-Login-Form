@@ -69,7 +69,7 @@ const Registration = () => {
             return false;
         } else {
             const userData = { name, username, email, password };
-            axios.post('https://multi-login-form.vercel.app/auth/existingUser', userData)
+            axios.post('http://localhost:7000/auth/existingUser', userData)
             .then((response) => {
                 console.log(response.data.message);
                 if (response.data.message === "Username already exists") {
