@@ -13,7 +13,7 @@ const db = mysql.createConnection({
 })
 
 exports.registration = async (request,response) => {
-    const {name,username,email,password,location,passion,imagePath} = request.body;
+    const {name,username,email,password,location,image,passion} = request.body;
     let hashpassword = await md5(password)
     console.log(hashpassword);
 
@@ -25,7 +25,7 @@ exports.registration = async (request,response) => {
                 if (userData != '') {
                     response.send(JSON.stringify({ "status": 200, "error": null, "message": "Email already exists" }));
                 }else {
-                    db.query('INSERT INTO users SET ?', { name: name, username: username, email: email, password: hashpassword, location: location, passion: passion, imagePath: imagePath }, (error, userData) => {
+                    db.query('INSERT INTO users SET ?', { name: name, username: username, email: email, password: hashpassword, location: location, passion: passion, image: image }, (error, userData) => {
                         if (error) {
                             response.send(JSON.stringify({ "status": 500, "error": error }));
                         } else {

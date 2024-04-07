@@ -7,25 +7,45 @@ const PageTwoComp = () => {
 
   const navigate = useNavigate();
 
-  // const [isChecked, setIsChecked] = useState(false);
+  const [checkedBox, setCheckedBox] = useState('');
   const [isBoxOneChecked, setIsBoxOneChecked] = useState(false);
   const [isBoxTwoChecked, setIsBoxTwoChecked] = useState(false);
   const [isBoxThreeChecked, setIsBoxThreeChecked] = useState(false);
 
-  // const handleCheckboxChange = () => {
-  //   setIsChecked(!isChecked);
-  // };
-
   const handleOneChange = () => {
-    setIsBoxOneChecked(!isBoxOneChecked);
+    setIsBoxOneChecked(!isBoxOneChecked); // Yeh karega checkbox ko toggle (on ya off) karne ke liye
+    if (!isBoxOneChecked) {
+      setIsBoxTwoChecked(false); // Agar yeh checkbox on hai, to dusre checkboxes ko off kar dega
+      setIsBoxThreeChecked(false);
+      setCheckedBox(1); // CheckedBox ko update karega
+    } else {
+      setCheckedBox(''); // CheckedBox ko update karega
+
+    }
   };
 
   const handleTwoChange = () => {
-    setIsBoxTwoChecked(!isBoxTwoChecked);
+    setIsBoxTwoChecked(!isBoxTwoChecked); // Yeh karega checkbox ko toggle (on ya off) karne ke liye
+    if (!isBoxTwoChecked) {
+      setIsBoxOneChecked(false); // Agar yeh checkbox on hai, to dusre checkboxes ko off kar dega
+      setIsBoxThreeChecked(false);
+      setCheckedBox(2); // CheckedBox ko update karega
+    } else {
+      setCheckedBox(''); // CheckedBox ko update karega
+
+    }
   };
 
   const handleThreeChange = () => {
-    setIsBoxThreeChecked(!isBoxThreeChecked);
+    setIsBoxThreeChecked(!isBoxThreeChecked); // Yeh karega checkbox ko toggle (on ya off) karne ke liye
+    if (!isBoxThreeChecked) {
+      setIsBoxOneChecked(false); // Agar yeh checkbox on hai, to dusre checkboxes ko off kar dega
+      setIsBoxTwoChecked(false);
+      setCheckedBox(3); // CheckedBox ko update karega
+    } else {
+      setCheckedBox(''); // CheckedBox ko update karega
+
+    }
   };
 
 
@@ -52,7 +72,7 @@ const PageTwoComp = () => {
     ...existingUserData,
     passion: passionText,
     location: existingUserData.location,
-    imagePath: existingUserData.imagePath
+    image: existingUserData.image
   };
 
     console.log('Updated UserData:', updatedUserData);
@@ -60,7 +80,7 @@ const PageTwoComp = () => {
     axios.post('http://localhost:7000/auth/registration', updatedUserData)
       .then((response) => {
         console.log(response.data.message);
-        // navigate('/pagethree');
+        navigate('/pagethree');
       })
       .catch((error) => {
         console.error("Error registering user:", error);
@@ -82,20 +102,32 @@ const PageTwoComp = () => {
             <div className={`flex flex-col border w-60 h-60 ${isBoxOneChecked ? 'border-2 border-pink-500' : ''} shadow-md rounded-xl text-center items-center justify-center gap-2 p-4`}>
                 <img src="Images/image2.png" className='h-[100px]' alt="" />
                 <h3 className='font-bold'>I'm a designer looking to share my work</h3>
-                <p className={`text-xs text-gray-500 ${isBoxOneChecked ? '' : 'hidden'}`}>With over 7 million shots from a vast community of designers, Dribbble is the leading source for design inspiration.</p>
-                <input type="checkbox" onClick={handleOneChange} value={`I'm a designer looking to share my work`} class={`form-checkbox text-pink-600 cursor-pointer h-4 w-4 ${isBoxOneChecked ? 'mb-20' : ''}`}/>
+                {isBoxOneChecked && (
+                  <>
+                    <p className="text-xs text-gray-500">With over 7 million shots from a vast community of designers, Dribbble is the leading source for design inspiration.</p>
+                  </>
+                )}
+                <input type="checkbox" onClick={handleOneChange} checked={checkedBox === 1} name='CheckboxOne' class={`form-checkbox text-pink-600 cursor-pointer h-4 w-4 ${isBoxOneChecked ? 'mb-20' : ''}`}/>
             </div>
             <div className={`flex flex-col border w-60 h-60 ${isBoxTwoChecked ? 'border-2 border-pink-500' : ''} shadow-md rounded-xl text-center items-center justify-center gap-2 p-4`}>
                 <img src="Images/image3.png" className='h-[100px]' alt="" />
                 <h3 className='font-bold'>I'm looking to hire a designer</h3>
-                <p className={`text-xs text-gray-500 ${isBoxTwoChecked ? '' : 'hidden'}`}>With over 7 million shots from a vast community of designers, Dribbble is the leading source for design inspiration.</p>
-                <input type="checkbox" onClick={handleTwoChange} value={`I'm looking to hire a designer`} class={`form-checkbox text-pink-600 cursor-pointer h-4 w-4 ${isBoxTwoChecked ? 'mb-20' : ''}`}/>
+                {isBoxTwoChecked && (
+                  <>
+                    <p className="text-xs text-gray-500">With over 7 million shots from a vast community of designers, Dribbble is the leading source for design inspiration.</p>
+                  </>
+                )}
+                <input type="checkbox" onClick={handleTwoChange} checked={checkedBox === 2} name='CheckboxTwo' class={`form-checkbox text-pink-600 cursor-pointer h-4 w-4 ${isBoxTwoChecked ? 'mb-20' : ''}`}/>
             </div>
             <div className={`flex flex-col border w-60 h-60 ${isBoxThreeChecked ? 'border-2 border-pink-500' : ''} shadow-md rounded-xl text-center items-center justify-center gap-2 p-4`}>
                 <img src="Images/image4.png" className='h-[100px]' alt="" />
                 <h3 className='font-bold'>I'm a looking for design inspiration</h3>
-                <p className={`text-xs text-gray-500 ${isBoxThreeChecked ? '' : 'hidden'}`}>With over 7 million shots from a vast community of designers, Dribbble is the leading source for design inspiration.</p>
-                <input type="checkbox" onClick={handleThreeChange} value={`I'm a looking for design inspiration`} class={`relative text-pink-600 cursor-pointer h-4 w-4 checked:bg-pink-600 ${isBoxThreeChecked ? 'mb-20' : ''}`}/>
+                {isBoxThreeChecked && (
+                  <>
+                    <p className="text-xs text-gray-500">With over 7 million shots from a vast community of designers, Dribbble is the leading source for design inspiration.</p>
+                  </>
+                )}
+                <input type="checkbox" onClick={handleThreeChange} checked={checkedBox === 3} name='CheckboxThree' class={`relative text-pink-600 cursor-pointer h-4 w-4 checked:bg-pink-600 ${isBoxThreeChecked ? 'mb-20' : ''}`}/>
             </div>
         </div>
 

@@ -8,7 +8,6 @@ const PageOneComp = () => {
   const navigate = useNavigate();
   const [location, setLocation] = useState('');
   const [image, setImage] = useState();
-  const [formError, setFormError] = useState();
 
   const handleImageChange = (event) => {
     const file = event.target.files[0]; 
@@ -22,24 +21,18 @@ const PageOneComp = () => {
   const submitHandler = async (event) => {
     event.preventDefault();
 
-    if (!location || !image) {
-      setFormError('Please fill in both the location and upload an image.');
-      return;
-    }
 
     const existingUserData = JSON.parse(localStorage.getItem('userData'));
 
     const updatedUserData = {
       ...existingUserData,
       location: location,
-      imagePath: URL.createObjectURL(image)
+      image: URL.createObjectURL(image)
     };
 
     localStorage.setItem('userData', JSON.stringify(updatedUserData));
 
     console.log('Updated userData in localStorage:', updatedUserData);
-
-    setFormError('');
 
     navigate('/pagetwo')
 
@@ -53,8 +46,6 @@ const PageOneComp = () => {
         <h1 className='font-extrabold text-2xl xs:text-xl'>Welcome! Let's Create your profile</h1>
         <label className='text-gray-500 text-xs'>Let others get to know you better! You can do these later.</label>
 
-        {formError && <p className="text-red-500">{formError}</p>}
-
         <div className='flex flex-col gap-4'>
             <h2 className='font-bold'>Add an avatar</h2>
             <div className='flex space-x-6'>
@@ -67,7 +58,7 @@ const PageOneComp = () => {
             </div>
             <h2 className='font-bold'>Add your location</h2>
             <input type="text" className='border-b-2 pb-2 outline-none placeholder:font-medium placeholder:text-xs' placeholder='Enter a location' onChange={handleLocationChange}/>
-            <button className='flex items-center bg-pink-500 h-8 text-center justify-center rounded-md w-48 text-white font-bold mt-6' onClick={submitHandler}>Next</button>
+            <button className={`flex items-center bg-pink-500 h-8 text-center justify-center rounded-md w-48 text-white font-bold ${image && location ? '' : 'disabled:bg-pink-300'}`} disabled={!image || !location} onClick={submitHandler}>Next</button>
         </div>
       </form>
     </div>
