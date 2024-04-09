@@ -121,7 +121,7 @@ const PageTwoComp = () => {
 
         <div className='flex flex-col items-center justify-center mt-10 gap-4'>
           <h3 className={`font-bold text-sm ${isBoxThreeChecked || isBoxTwoChecked || isBoxOneChecked ? '' : 'invisible'}`}>Anything else? You can select</h3>
-          <button className={`flex items-center bg-pink-500 h-8 text-center justify-center rounded-md w-48 text-white font-bold ${isBoxThreeChecked || isBoxTwoChecked || isBoxOneChecked ? '' : 'disabled:bg-pink-300'}`} disabled={!isBoxOneChecked && !isBoxTwoChecked && !isBoxThreeChecked} onClick={submitHandler}>Finish</button>
+          <button className={`flex items-center bg-pink-500 h-8 text-center justify-center rounded-md w-48 text-white font-bold ${isBoxThreeChecked || isBoxTwoChecked || isBoxOneChecked ? '' : 'disabled:bg-pink-300'}`} disabled={!isBoxOneChecked && !isBoxTwoChecked && !isBoxThreeChecked} onClick={() => {navigate('/three')}}>Finish</button>
           <h3 className={`font-bold text-sm text-gray-500 ${isBoxThreeChecked || isBoxTwoChecked || isBoxOneChecked ? '' : 'invisible'}`}>or Press RETURN</h3>
         </div>
       </form>
