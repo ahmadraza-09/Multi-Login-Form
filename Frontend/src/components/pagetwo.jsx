@@ -72,25 +72,7 @@ const PageTwoComp = () => {
     image: existingUserData.image
   };
 
-    console.log('Updated UserData:', updatedUserData);
-
-    axios.post('http://localhost:7000/auth/registration', updatedUserData)
-      .then((response) => {
-        console.log(response.data.message);
-        if(response.data.message == "Username already exists"){
-          alert(response.data.message);
-          return false;
-        } else if(response.data.message == "Email already exists"){
-          alert(response.data.message);
-          return false; 
-        } else {
-          navigate('/pagethree');
-          console.log(response.data.message);
-        }
-      })
-      .catch((error) => {
-        console.error("Error registering user:", error);
-      });
+    navigate('/pagethree');
     
   };
 

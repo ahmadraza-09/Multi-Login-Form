@@ -68,24 +68,7 @@ const Registration = () => {
             getFormError("Please agree to the terms and conditions.");
             return false;
         } else {
-            const userData = { name, username, email, password };
-            axios.post('http://localhost:7000/auth/existingUser', userData)
-            .then((response) => {
-                console.log(response.data.message);
-                if (response.data.message === "Username already exists") {
-                    getFormError("Username already exists");
-                    return false;
-                } else if (response.data.message === "Email already exists") {
-                    getFormError("Email already exists");
-                    return false;
-                } else {
-                    localStorage.setItem('userData', JSON.stringify(userData));
-                    navigate('/pageone');
-                }
-                })
-                .catch((error) => {
-                console.error("Error checking email and username:", error);
-            });
+            navigate('/pageone')
         }
       }
     }
